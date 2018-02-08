@@ -22,29 +22,33 @@ public class Menu {
                 case 1:
                     //Add game
                     System.out.println("What game would you like to add to you library");
+
                     break;
                 case 2:
                     //Remove game
-                    System.out.println("What game would you like to add");
+                    System.out.println("What game would you like to remove?");
                     break;
                 case 3:
                     //View main library
-                    System.out.println();
+                    System.out.println("Here is your library.");
+
+                    startMenu();
                     break;
                 case 4:
                     //Checkout game
-                    System.out.println();
+                    System.out.println("What game would you like to check out?");
                     break;
                 case 5:
                     //Check in games
-                    System.out.println();
+                    System.out.println("What game would you like to check out?");
                     break;
                 case 6:
                     // View checked out games
-                    System.out.println();
+                    System.out.println("Here are you checked out games.");
                     break;
                 case 7:
                     //Exit program
+                    System.exit(0);
                     break;
                 default:
                     //prompt user to pick correct number then loop back to menu
