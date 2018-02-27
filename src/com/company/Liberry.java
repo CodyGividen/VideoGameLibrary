@@ -16,9 +16,9 @@ public class Liberry {
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("MM/DD/yy HH:mm:ss");
 
-    private List<Game> gameLibrary = new ArrayList<Game>();
+    protected List<Game> gameLibrary = new ArrayList<Game>();
 
-    private List<Game> checkOutLibrary = new ArrayList<Game>();
+    protected List<Game> checkOutLibrary = new ArrayList<Game>();
 
     private Scanner input = new Scanner(System.in);
 
@@ -52,8 +52,16 @@ public class Liberry {
 
     }
 
-    protected void checkOutGame(Game game) {
+    protected void checkOutGame(int gameIndex) {
+        gameIndex--;
+        Game game = gameLibrary.get(gameIndex);
+        Calendar calendar = Calendar.getInstance();
+        System.out.println("You checked out the game on " + dateFormat.format(calendar.getTime()));
+        calendar.add(calendar.DAY_OF_YEAR, 4);
+        System.out.println("Return checked out the game on " + dateFormat.format(calendar.getTime()));
+        game.setDueDate(dateFormat.format(calendar.getTime()));
         checkOutLibrary.add(game);
+        gameLibrary.remove(game);
         menu.startMenu();
 
 
@@ -61,8 +69,12 @@ public class Liberry {
 
 
     protected void returnGame() {
-
+        int userInput = input.nextInt() - 1;
+        System.out.println("h");
+        Game game = checkOutLibrary.get(userInput);
         checkOutLibrary.remove(input.nextInt() - 1);
+
+        gameLibrary.add(game);
 
 
     }

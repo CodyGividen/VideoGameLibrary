@@ -18,6 +18,7 @@ public class Menu {
                 "6. View checked out game \n" +
                 "7. Exit the program");
 
+
         try {
 
             switch (input.nextInt()) {
@@ -35,35 +36,53 @@ public class Menu {
                     break;
                 case 2:
                     //Remove game
-                    System.out.println("What number would you like to remove?");
-                    liberry.showGames();
-                    liberry.removeGame();
-                    startMenu();
+                    if(liberry.gameLibrary.isEmpty()){
+                        System.out.println("You have no games in library. ");
+                        startMenu();
+                    }else{
+                        System.out.println("What number would you like to remove?");
+                        liberry.showGames();
+                        liberry.removeGame();
+                        startMenu();
+                    }
+
                     break;
                 case 3:
                     //View main library
-                    System.out.println("Here is your library.");
-                   liberry.showGames();
+                    if(liberry.gameLibrary.isEmpty()){
+                        System.out.println("You have no checked out games.");
+                        startMenu();
+                    }else{
+                        System.out.println("Here is your library.");
+                        liberry.showGames();
+                        startMenu();
 
-                    startMenu();
+                    }
                     break;
                 case 4:
                     //Checkout game
-                    System.out.println("What game would you like to check out?");
-                    liberry.showGames();
-                    input.nextLine();
-                    Game game1 = new Game(input.nextLine());
-                    System.out.println("You have checked out " + game1.getTitle() + ".");
-                    liberry.checkOutGame(game1);
-                    liberry.removeGame();
-                    startMenu();
+                    if(liberry.checkOutLibrary.isEmpty()) {
+                        System.out.println("Here are the games you can check out: ");
+                        liberry.showGames();
+                        System.out.println("What game would you like to check out?");
+                        liberry.checkOutGame(input.nextInt());
+                        startMenu();
+                    }else{
+                        System.out.println("You have know checked out games.");
+                        startMenu();
+                    }
                     break;
                 case 5:
                     //Check in games
-                    System.out.println("What game would you like to check out?");
-                    liberry.showCheckOut();
-                    liberry.returnGame();
-                    startMenu();
+                    if(liberry.checkOutLibrary.isEmpty()) {
+                        System.out.println("What game would you like to check out?");
+                        liberry.showCheckOut();
+                        liberry.returnGame();
+                        startMenu();
+                    }else{
+                        System.out.println("You have know checked out games.");
+                        startMenu();
+                    }
                     break;
                 case 6:
                     // View checked out games
@@ -77,13 +96,13 @@ public class Menu {
                     break;
                 default:
                     //prompt user to pick correct number then loop back to menu
-                    if (liberry.showGames() = ){
+                    //if (liberry.showGames() = ){
 
 
-                    }else {
-                        System.out.println("Pick the correct number between 1 and 7.");
-                        break;
-                    }
+//                    }else {
+//                        System.out.println("Pick the correct number between 1 and 7.");
+//                        break;
+//                    }
 
 
             }
